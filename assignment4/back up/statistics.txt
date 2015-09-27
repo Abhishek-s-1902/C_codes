@@ -1,0 +1,186 @@
+/*
+ * Statistics.h
+ *
+ *  Created on: 26-Apr-2014
+ *      Author: ABHI
+ */
+
+#ifndef STATISTICS_H_
+#define STATISTICS_H_
+#include <vector>
+#include <stdexcept>
+#include <iostream>
+#include <fstream>
+#include <algorithm>
+#include  <cmath>
+using namespace std;
+template<class T>
+
+class statistics {
+public:
+
+	statistics(){
+
+	}
+
+
+	typedef T stat_val;
+
+/*
+ * push_back: for storing the values into
+ * a vector
+ */
+
+
+	void push_back(T stat_val){
+
+		stat_vector.push_back(stat_val);
+	}
+/*
+ * put_val: printing the values of vectors
+ */
+	void put_val(){
+
+		for(int i=0;i<stat_vector.size();i++){
+			cout<<stat_vector[i];
+			            cout<<"";}
+	}
+/*
+ * mean:calculating the mean of all the values
+ */
+	T mean(){
+	 //mean_Value = 0;
+	//cout<<stat_vector.size()/2;
+	 if(stat_vector.size()==0){
+		 		   throw std::underflow_error(" Not enough data");
+		 	   }else{
+
+		        for(int i=0;i<stat_vector.size();i++)
+		        	mean_Value = mean_Value + stat_vector[i];
+
+		        //cout<<mean_Value;
+		        mean_Value = mean_Value/stat_vector.size();
+
+	 }
+
+	return mean_Value;
+}
+
+/*
+ * median: to calculate the median of given values
+ */
+	T median(){
+		 T median_Value;
+		 int Index_1;
+		 int Index_2;
+		 std::sort (stat_vector.begin(), stat_vector.end());
+
+		 if(stat_vector.size()==0)
+			throw std::underflow_error(" Not enough data");
+
+
+		 if(stat_vector.size()%2==0){
+
+			 Index_1 = stat_vector.size()/2;
+			 Index_2 = (stat_vector.size()/2)+1;
+			 median_Value = (stat_vector[Index_1-1]+stat_vector[Index_2-1])/2;
+		 }else{
+			 Index_2 = (stat_vector.size()/2)+1;
+			 median_Value = (stat_vector[Index_2-1]);
+		 }
+		 //cout<<"median_Value"<<median_Value;
+
+		 return median_Value;
+	}
+
+	/*
+	 * mode: calculating the mode of values
+	 */
+	vector<T> mode(){
+
+
+		 int count1=0;
+		 int count2 = 0;
+		 int Index1 =0;
+		 int Max_frequency =0;
+		 T present_element;
+		 vector<T> mode_val;
+
+		 if(stat_vector.size()==0)
+		 	throw std::underflow_error(" Not enough data");
+
+		 int length = stat_vector.size();
+
+		 std::sort (stat_vector.begin(), stat_vector.end());
+
+		 for(int i=0;i<length;i++){
+			 count1=0;
+			// present_element = stat_vector[i];
+
+			 for (int j = i + 1; j < length; j++)
+			 {
+			   if (stat_vector[i] == stat_vector[j])
+				   {
+				   count1++; i++;
+				 }else
+					 break;
+			 }
+
+			 if(count1 ==0)
+				 continue;
+
+			 else if (count1 > count2)
+			 {
+				 //Index1 = i;
+				 count2 = count1;
+				 mode_val.erase(mode_val.begin(),mode_val.end());
+				 mode_val.push_back(stat_vector[i]);
+			 }else if(count1 == count2){
+
+				 mode_val.push_back(stat_vector[i]);
+			 }
+		 }
+
+
+		 return mode_val;
+}
+
+/*
+ * variance: calulating the variance of given values
+ */
+	T variance(){
+		T variance;
+		 if(stat_vector.size()<=1)
+				 	throw std::underflow_error(" Not enough data");
+			if(stat_vector.size()==0)
+				throw std::underflow_error("Not enough data");
+			else{
+		 for(int i = 0; i < stat_vector.size(); i++){
+			variance = variance + pow((stat_vector[i]-mean_Value),2);
+		}
+		// cout<<"variance"<<variance;
+		 variance = variance/(stat_vector.size()-1);
+		 std_deviation = variance;
+		}
+
+		return abs(variance);
+	}
+
+	/*
+	 * standardDeviation: calculating standard deviation for
+	 * a given values
+	 */
+	T standardDeviation(){
+		 if(stat_vector.size()<=1)
+			throw std::underflow_error(" Not enough data");
+		return sqrt(std_deviation);
+	}
+
+
+private:
+	 vector<T> stat_vector;
+	 T mean_Value;
+	 T std_deviation;
+};
+
+#endif /* STATISTICS_H_ */

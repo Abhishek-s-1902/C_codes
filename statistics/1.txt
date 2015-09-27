@@ -1,0 +1,59 @@
+ while ( true )
+   
+      try 
+      {
+         cin >> t;
+      }
+      catch ( runtime_error &e )
+      {
+         cerr << "Runtime exception: " << e.what() << endl;
+         continue;
+      }
+      if ( cin.eof() )
+      {
+         break;
+      }
+      cout<<t<<endl;
+      
+      stats.push( t );
+   }
+  showStats(stats);
+system("pause"); 
+
+
+
+
+
+
+ Time :: operator >> ( string s1 ) 
+   {
+         int pos = 0;
+         int i = 0;
+         int count = 0;
+    while(i<s1.length())
+     {
+       if(s1.at(i)==':'&& count = 0)
+      {
+              hh =  substr(pos,i);
+              pos = i+1;
+              count++
+              continue;           
+      }
+      
+      if(s1.at(i)==':'&& count = 1)
+      {
+              mm =  substr(pos,i);
+              pos = i+1;
+              count++
+              continue;           
+      }
+      
+      if(s1.at(i)==':'&& count = 2)
+      {
+              ss =  substr(pos,i);
+              pos = i+1;
+              count++
+              continue;           
+      } 
+      
+   }}                 

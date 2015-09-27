@@ -1,0 +1,85 @@
+/**
+ * 4003-703-03 Homework 4 main.cpp.  Students should add a showStats()
+ * function to this file.
+ */
+#include "statistics.h"
+#include <iostream>
+#include <fstream>
+#include <iterator>
+
+using namespace std;
+template< typename T >
+
+
+int showStats( T data )
+{
+
+
+     cout<<"mean:" <<data.mean(); cout<<endl;
+    cout<<"median: "<<data.median(); cout<<endl;
+
+    vector<typename T::stat_val> mode_val = data.mode();
+
+    cout<<"mode"<<endl;
+
+   for(int i=0;i<mode_val.size();i++){
+    	cout<<mode_val[i]<<" ";
+    }
+
+   cout<< "variance: " << data.variance(); cout<<endl;
+    cout<<"standardDeviation "<<data.standardDeviation();cout<<endl;
+ cout << endl;
+
+ return 0;
+}
+
+
+
+
+
+
+//using namespace std;
+int main()
+{
+
+	int stat;
+
+
+	statistics<int> iStats;
+	statistics<float> fStats;
+
+   cout<< "Enter integers separated by whitespace. Press CTRL-D on an empty line to end." << endl;;
+
+
+   istream_iterator< int > i_in_it( cin );
+   for( ; i_in_it != istream_iterator<int>(); i_in_it++ )
+   {
+      if ( !cin.fail() )
+      {
+         iStats.push_back(*i_in_it);
+      }
+   }
+
+
+
+  showStats( iStats );
+
+
+   cin.clear();
+
+   cout << endl << endl;
+   cout << "Enter floats separated by whitespace. Press CTRL-D on an empty line to end." << endl;;
+
+
+   istream_iterator< float > f_in_it( cin );
+   for( ; f_in_it != istream_iterator<float>(); f_in_it++ )
+   {
+      if ( !cin.fail() )
+      {
+         fStats.push_back(*f_in_it);
+      }
+   }
+   showStats( fStats );
+
+
+}

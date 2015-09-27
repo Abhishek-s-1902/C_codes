@@ -1,0 +1,5 @@
+1. type casting
+2. precision calculation
+3. can use friend function
+4.foot unit
+5.  infinite dimensions

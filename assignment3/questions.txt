@@ -1,0 +1,52 @@
+Q: how to deal with different class and stations??
+Q: can we do changes in the file
+q; about latitude and logitude, fixed or not??
+
+Q variables in other classes?? we can put with us??
+Q: avg and max min is only for temp??
+
+derived 
+delegation
+
+
+test con:
+
+if same time occurs 2wice
+
+
+
+
+	observations[currentObservation].time = time;
+	observations[currentObservation].temperature = temperature;
+	observations[currentObservation].windspeed = windspeed;
+
+		if(currentObservation==0)
+		{
+			maxtemp.temperature = temperature;
+			mintemp.temperature = temperature;
+			currentObservation++;
+		}
+		else if(maxtemp.temperature<observations[currentObservation].temperature)
+		{
+			maxtemp.temperature = observations[currentObservation].temperature;
+			maxtemp.time = observations[currentObservation].time;
+
+		}
+		else if(mintemp.temperature>observations[currentObservation].temperature)
+		{
+			mintemp.temperature = observations[currentObservation].temperature;
+			mintemp.time = observations[currentObservation].temperature;
+		}
+8
+
+
+
+ float getAverageTemperature();
+
+	  Time getTimeOfHighTemp() const;
+
+	  Time getTimeOfLowTemp() const;
+
+	  float getValueOfHighTemp() const;
+
+	  float getValueOfLowTemp() const;
